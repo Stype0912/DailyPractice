@@ -1,10 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"strconv"
 	"strings"
-	"time"
 )
 
 func getHint(secret string, guess string) string {
@@ -67,11 +65,4 @@ func lastRemaining(n int, m int) int {
 		nList = append(nList[:index], nList[index+1:]...)
 	}
 	return nList[0]
-}
-
-func main() {
-	//时间戳
-	t := time.Now()
-	fmt.Println(t.Weekday().String())
-
 }
