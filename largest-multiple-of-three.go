@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"sort"
 	"strconv"
 )
@@ -76,8 +75,4 @@ func dropZero(ans string) string {
 			return ans
 		}
 	}
-}
-
-func main() {
-	fmt.Println(largestMultipleOfThree([]int{9, 8, 6, 8, 6}))
 }
