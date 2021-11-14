@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 func climbStairs(n int) int {
 	ansList := []int{1, 2}
 	if n <= 2 {
@@ -13,6 +11,3 @@ func climbStairs(n int) int {
 	return ansList[n-1]
 }
 
-func main() {
-	fmt.Println(climbStairs(3))
-}

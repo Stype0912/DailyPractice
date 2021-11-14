@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -60,20 +58,4 @@ func equalTree(root1, root2 *TreeNode) bool {
 		return false
 	}
 	return true
-}
-
-func main() {
-	fmt.Println(equalTree(&TreeNode{
-		Val: 1,
-		Left: &TreeNode{
-			Val:   2,
-			Left:  nil,
-			Right: nil,
-		},
-		Right: nil,
-	}, &TreeNode{
-		Val:   1,
-		Left:  nil,
-		Right: nil,
-	}))
 }
