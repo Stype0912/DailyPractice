@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"strings"
 )
 
@@ -38,8 +37,4 @@ func decodeCiphertext(encodedText string, rows int) string {
 		}
 	}
 	return strings.TrimRight(ans, " ")
-}
-
-func main() {
-	fmt.Println(decodeCiphertext(" b  ac", 2))
 }
