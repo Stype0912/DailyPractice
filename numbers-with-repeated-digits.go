@@ -42,7 +42,3 @@ func contain(item int) bool {
 	}
 	return false
 }
-
-func main() {
-	numDupDigitsAtMostN(100)
-}
