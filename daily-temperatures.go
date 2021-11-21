@@ -2,7 +2,6 @@ package main
 
 import (
 	"errors"
-	"fmt"
 )
 
 func dailyTemperatures(temperatures []int) []int {
@@ -62,8 +61,4 @@ func (s *Stack) Top() (interface{}, error) {
 		return nil, errors.New("stack is empty")
 	}
 	return theStack[len(theStack)-1], nil
-}
-
-func main() {
-	fmt.Println(dailyTemperatures([]int{73, 74, 75, 71, 69, 72, 76, 73}))
 }
