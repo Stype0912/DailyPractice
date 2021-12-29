@@ -23,12 +23,12 @@ func minCharacters(a string, b string) int {
 	return ans
 }
 
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
+//func Min(a, b int) int {
+//	if a < b {
+//		return a
+//	}
+//	return b
+//}
 
 func Sum(list []int) int {
 	ans := 0
