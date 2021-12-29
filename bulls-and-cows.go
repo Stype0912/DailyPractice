@@ -22,10 +22,3 @@ func getHint(secret string, guess string) string {
 	y -= x
 	return fmt.Sprintf("%vA%vB", x, y)
 }
-
-func Min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
