@@ -48,7 +48,7 @@ func (s *Stack) Push(num interface{}) {
 func (s *Stack) Pop() (interface{}, error) {
 	theStack := *s
 	if len(*s) == 0 {
-		return nil, errors.New("stack is empty")
+		return nil, errors.New("stackType is empty")
 	}
 	value := theStack[len(*s)-1]
 	*s = theStack[:len(*s)-1]
@@ -58,7 +58,7 @@ func (s *Stack) Pop() (interface{}, error) {
 func (s *Stack) Top() (interface{}, error) {
 	theStack := *s
 	if len(theStack) == 0 {
-		return nil, errors.New("stack is empty")
+		return nil, errors.New("stackType is empty")
 	}
 	return theStack[len(theStack)-1], nil
 }
