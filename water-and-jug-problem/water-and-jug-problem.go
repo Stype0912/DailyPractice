@@ -14,7 +14,7 @@ func canMeasureWater(jug1Capacity int, jug2Capacity int, targetCapacity int) boo
 		if remainX+remainY == targetCapacity || remainX == targetCapacity || remainY == targetCapacity {
 			return true
 		}
-		if isSeen[[2]int{remainX, remainY}] == true {
+		if isSeen[[2]int{remainX, remainY}] {
 			continue
 		}
 		isSeen[[2]int{remainX, remainY}] = true
