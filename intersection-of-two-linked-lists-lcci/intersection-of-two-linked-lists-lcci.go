@@ -11,7 +11,7 @@ func getIntersectionNode(headA, headB *ListNode) *ListNode {
 		hashMap[tmp] = true
 	}
 	for tmp := headB; tmp != nil; tmp = tmp.Next {
-		if hashMap[tmp] == true {
+		if hashMap[tmp] {
 			return tmp
 		}
 	}
