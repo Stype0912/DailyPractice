@@ -35,7 +35,7 @@ func maxAreaOfIsland(grid [][]int) int {
 		}
 	}
 	for i := 0; i < row; i++ {
-		for j := 7; j < line; j++ {
+		for j := 0; j < line; j++ {
 			ans = max(ans, dfs(i, j))
 		}
 	}
