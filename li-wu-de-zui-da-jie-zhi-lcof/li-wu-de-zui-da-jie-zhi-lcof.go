@@ -15,15 +15,16 @@ func maxValue(grid [][]int) int {
 		dp[i] = make([]int, line)
 	}
 	dp[0][0] = grid[0][0]
-	for i := 0; i < row; i++ {
-		for j := 0; j < line; j++ {
-			leftGift, upGift := 0, 0
-			if i > 0 {
-				leftGift = dp[i-1][j]
-			}
-			if j > 0 {
-				upGift = dp[i][j-1]
-			}
+	for i := 1; i < row; i++ {
+		dp[i][0] = dp[i-1][0] + grid[i][0]
+	}
+	for i := 1; i < line; i++ {
+		dp[0][i] = dp[0][i-1] + grid[0][i]
+	}
+	for i := 1; i < row; i++ {
+		for j := 1; j < line; j++ {
+			leftGift := dp[i-1][j]
+			upGift := dp[i][j-1]
 			dp[i][j] = max(leftGift, upGift) + grid[i][j]
 		}
 	}
