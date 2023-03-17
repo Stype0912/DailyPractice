@@ -1,6 +1,6 @@
-package course_schedule_ii
+package course_schedule
 
-func findOrder(numCourses int, prerequisites [][]int) []int {
+func canFinish(numCourses int, prerequisites [][]int) bool {
 	edges := map[int][]int{}
 	for _, prerequisite := range prerequisites {
 		edges[prerequisite[1]] = append(edges[prerequisite[1]], prerequisite[0])
@@ -27,11 +27,7 @@ func findOrder(numCourses int, prerequisites [][]int) []int {
 		}
 	}
 	if !isValid {
-		return []int{}
+		return false
 	}
-	ans := []int{}
-	for i := len(stack) - 1; i >= 0; i-- {
-		ans = append(ans, stack[i])
-	}
-	return ans
+	return true
 }
