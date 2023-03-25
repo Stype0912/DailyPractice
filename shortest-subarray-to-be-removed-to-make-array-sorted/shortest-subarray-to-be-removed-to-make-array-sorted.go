@@ -1,38 +1,32 @@
-package main
+package shortest_subarray_to_be_removed_to_make_array_sorted
 
 func findLengthOfShortestSubarray(arr []int) int {
-	length := len(arr)
-	if length == 1 {
+	left := 0
+	right := len(arr) - 1
+	for i := 0; i < len(arr)-1 && arr[i] <= arr[i+1]; i++ {
+		left++
+	}
+	for j := right; j > 0 && arr[j] >= arr[j-1]; j-- {
+		right--
+	}
+	if left >= right {
 		return 0
 	}
-	left, right := -1, -1
-	for i := 1; i < length; i++ {
-		if i == length-1 {
-			return 0
+	ans := min(len(arr)-left-1, right)
+
+	for i := 0; i <= left; i++ {
+		k := right
+		for k < len(arr) && arr[k] < arr[i] {
+			k++
 		}
-		if arr[i] < arr[i-1] {
-			left = i
-			break
-		}
-	}
-	for j := length - 1; j >= 1; j-- {
-		if arr[j-1] > arr[j] {
-			right = j
-			break
-		}
-	}
-	ans := right - left
-	i := 0
-	j := right
-	for {
-		if i == left || j == length {
-			break
-		}
-		if arr[i] > arr[j] {
-			ans++
-			j++
-		}
-		i++
+		ans = min(ans, k-i-1)
 	}
 	return ans
+}
+
+func min(i, j int) int {
+	if i < j {
+		return i
+	}
+	return j
 }
