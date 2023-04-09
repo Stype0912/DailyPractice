@@ -6,7 +6,7 @@ func checkDistances(s string, distance []int) bool {
 		if index, ok := letterMap[letter]; !ok {
 			letterMap[letter] = i
 		} else {
-			if i-index != distance[letter-'a'] {
+			if i-index-1 != distance[letter-'a'] {
 				return false
 			}
 		}
