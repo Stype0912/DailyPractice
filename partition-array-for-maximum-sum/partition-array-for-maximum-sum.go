@@ -9,8 +9,13 @@ func maxSumAfterPartitioning(arr []int, k int) int {
 	}
 	for i := k; i < len(arr); i++ {
 		subArrayMax = -1
-		for j := i - k; j < i; j++ {
-			subArrayMax = max(subArrayMax, dp[j]+sumOfSubArray(arr[j+1:i+1]))
+		elementMax := arr[i]
+		//for j := i - k; j < i; j++ {
+		//	subArrayMax = max(subArrayMax, dp[j]+sumOfSubArray(arr[j+1:i+1]))
+		//}
+		for j := i - 1; j >= i-k; j-- {
+			elementMax = max(elementMax, arr[j+1])
+			subArrayMax = max(subArrayMax, dp[j]+(i-j)*elementMax)
 		}
 		dp[i] += subArrayMax
 	}
