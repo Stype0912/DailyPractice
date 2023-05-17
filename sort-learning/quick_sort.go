@@ -1,4 +1,4 @@
-package quick_sort
+package sort_learning
 
 func quickSort(arr []int, begin, end int) {
 	if begin < end {
