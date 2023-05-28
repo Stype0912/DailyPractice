@@ -19,7 +19,7 @@ func canTraverseAllPairs(nums []int) bool {
 		}
 	}
 	if len(newNums) == 1 {
-		return true
+		return newNums[0] != 1
 	}
 	for i := 0; i < len(newNums); i++ {
 		for j := i + 1; j < len(newNums); j++ {
