@@ -10,7 +10,7 @@ func swapPairs(head *ListNode) *ListNode {
 	node := dummy
 	for {
 		if node.Next == nil || node.Next.Next == nil {
-			return head
+			return dummy.Next
 		}
 		nodeTmp1, nodeTmp2 := new(ListNode), new(ListNode)
 		nodeTmp1.Val = node.Next.Val
