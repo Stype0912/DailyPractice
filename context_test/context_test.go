@@ -6,6 +6,24 @@ import (
 	"testing"
 )
 
+func TestSliceAndArray(t *testing.T) {
+	array := [5]int{0, 1, 2, 3, 4}
+	slice := make([]int, 5)
+	for i := 0; i < 5; i++ {
+		slice[i] = i
+	}
+	newArray := array
+	newArray[0] = 1
+	newSlice := slice
+	newSlice[0] = 1
+	t.Log(array)
+	t.Log(slice)
+	t.Log(cap(slice))
+	slice = append(slice, 5)
+	t.Log(cap(slice))
+	t.Log(cap(array))
+}
+
 func TestContext(t *testing.T) {
 	chan1 := make(chan int, 1)
 	chan2 := make(chan int, 1)
@@ -48,14 +66,4 @@ func TestContext(t *testing.T) {
 	go func2()
 	go func3()
 	wg.Wait()
-}
-
-func sortFloat64(a []float64) {
-	for i := 0; i < len(a); i++ {
-		for j := i + 1; j < len(a); j++ {
-			if a[i] > a[j] {
-				a[i], a[j] = a[j], a[i]
-			}
-		}
-	}
 }
