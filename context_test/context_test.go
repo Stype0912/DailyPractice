@@ -2,6 +2,7 @@ package context_test
 
 import (
 	"fmt"
+	"sort"
 	"sync"
 	"testing"
 )
@@ -22,6 +23,9 @@ func TestSliceAndArray(t *testing.T) {
 	slice = append(slice, 5)
 	t.Log(cap(slice))
 	t.Log(cap(array))
+	arr := []int{5, 4, 3, 2, 1}
+	sort.Ints(arr)
+	t.Log(arr)
 }
 
 func TestContext(t *testing.T) {
