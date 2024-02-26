@@ -7,21 +7,14 @@ type TreeNode struct {
 }
 
 func rangeSumBST(root *TreeNode, low int, high int) int {
-	var dfs func(node *TreeNode)
-	ans := 0
-	dfs = func(node *TreeNode) {
-		if node == nil {
-			return
-		}
-		dfs(node.Left)
-		if node.Val >= low && node.Val <= high {
-			ans += node.Val
-		}
-		if node.Val > high {
-			return
-		}
-		dfs(node.Right)
+	if root == nil {
+		return 0
 	}
-	dfs(root)
-	return ans
+	if root.Val < low {
+		return rangeSumBST(root.Right, low, high)
+	}
+	if root.Val > high {
+		return rangeSumBST(root.Left, low, high)
+	}
+	return root.Val + rangeSumBST(root.Left, low, high) + rangeSumBST(root.Right, low, high)
 }
