@@ -1,33 +1,32 @@
 package number_of_islands
 
 func numIslands(grid [][]byte) int {
-	res := 0
-	var dfs func([][]byte, int, int)
-	dfs = func(grid [][]byte, r, c int) {
-		if !inArea(grid, r, c) {
+	n, m := len(grid), len(grid[0])
+	var dfs func(i, j int)
+	dfs = func(i, j int) {
+		if !inArea(n, m, i, j) {
 			return
 		}
-		if grid[r][c] != '1' {
-			return
+		if grid[i][j] == '1' {
+			grid[i][j] = '0'
+			dfs(i-1, j)
+			dfs(i, j-1)
+			dfs(i, j+1)
+			dfs(i+1, j)
 		}
-		grid[r][c] = '0'
-		dfs(grid, r-1, c)
-		dfs(grid, r+1, c)
-		dfs(grid, r, c-1)
-		dfs(grid, r, c+1)
-		return
 	}
-	for i := 0; i < len(grid); i++ {
-		for j := 0; j < len(grid[0]); j++ {
+	ans := 0
+	for i := 0; i < n; i++ {
+		for j := 0; j < m; j++ {
 			if grid[i][j] == '1' {
-				dfs(grid, i, j)
-				res++
+				ans++
+				dfs(i, j)
 			}
 		}
 	}
-	return res
+	return ans
 }
 
-func inArea(grid [][]byte, r, c int) bool {
-	return r >= 0 && r < len(grid) && c >= 0 && c < len(grid[0])
+func inArea(n, m, r, c int) bool {
+	return r >= 0 && r < n && c >= 0 && c < m
 }
