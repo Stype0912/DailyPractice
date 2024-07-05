@@ -1,33 +1,33 @@
 package number_of_provinces
 
 func findCircleNum(isConnected [][]int) int {
-	capital := make([]int, len(isConnected))
-	for i := 0; i < len(isConnected); i++ {
-		capital[i] = i
+	n := len(isConnected)
+	parent := make([]int, n)
+	for i := 0; i < n; i++ {
+		parent[i] = i
 	}
-	var union func(int, int)
 	var find func(int) int
-	find = func(x int) int {
-		if capital[x] == x {
-			return x
+	find = func(i int) int {
+		if parent[i] == i {
+			return i
 		}
-		return find(capital[x])
+		return find(parent[i])
 	}
-	union = func(x, y int) {
-		if find(x) != find(y) {
-			capital[find(y)] = find(x)
+	union := func(i, j int) {
+		if find(i) != find(j) {
+			parent[find(i)] = parent[find(j)]
 		}
 	}
-	for i := 0; i < len(isConnected); i++ {
-		for j := i + 1; j < len(isConnected[i]); j++ {
+	for i := 0; i < n; i++ {
+		for j := 0; j < n; j++ {
 			if isConnected[i][j] == 1 {
 				union(i, j)
 			}
 		}
 	}
-	capitalMap := map[int]int{}
-	for i := 0; i < len(capital); i++ {
-		capitalMap[find(i)]++
+	unionMap := map[int]bool{}
+	for _, num := range parent {
+		unionMap[find(num)] = true
 	}
-	return len(capitalMap)
+	return len(unionMap)
 }
