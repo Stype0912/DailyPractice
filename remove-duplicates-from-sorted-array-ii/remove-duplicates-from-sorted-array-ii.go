@@ -2,17 +2,15 @@ package remove_duplicates_from_sorted_array_ii
 
 func removeDuplicates(nums []int) int {
 	n := len(nums)
-	for i := 0; i < n; i++ {
-		j := i + 2
-		for {
-			if j >= n || nums[j] != nums[i] {
-				break
-			}
-			if nums[j] == nums[i] {
-				nums = append(nums[:j], nums[j+1:]...)
-				n--
-			}
+	slow, fast := 2, 2
+	if n <= 2 {
+		return n
+	}
+	for ; fast < n; fast++ {
+		if nums[fast] != nums[fast-2] {
+			nums[slow] = nums[fast]
+			slow++
 		}
 	}
-	return len(nums)
+	return slow
 }
