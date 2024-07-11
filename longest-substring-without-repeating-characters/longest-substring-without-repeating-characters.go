@@ -1,28 +1,26 @@
 package longest_substring_without_repeating_characters
 
 func lengthOfLongestSubstring(s string) int {
-	if len(s) == 0 {
-		return 0
+	n := len(s)
+	ans := 0
+	if n == 0 {
+		return ans
 	}
+	start, end := 0, 0
 	wordMap := map[byte]int{}
-	currLen := 0
-	maxLen := 0
-	j := 0
-	for i := 0; i < len(s); i++ {
-		if wordMap[s[i]] == 0 {
-			currLen++
-			if currLen > maxLen {
-				maxLen = currLen
-			}
+	for end < n {
+		letter := s[end]
+		if wordMap[letter] == 0 {
+			ans = max(ans, end-start+1)
+
 		} else {
-			for wordMap[s[i]] > 0 {
-				currLen--
-				wordMap[s[j]]--
-				j++
+			for wordMap[letter] != 0 {
+				wordMap[s[start]]--
+				start++
 			}
-			currLen++
 		}
-		wordMap[s[i]]++
+		end++
+		wordMap[letter]++
 	}
-	return maxLen
+	return ans
 }
