@@ -1,8 +1,5 @@
 package main
 
-var publicTargetSum int
-var publicBool bool
-
 type TreeNode struct {
 	Val   int
 	Left  *TreeNode
@@ -10,23 +7,18 @@ type TreeNode struct {
 }
 
 func hasPathSum(root *TreeNode, targetSum int) bool {
-	if root == nil {
-		return false
+	var dfs func(node *TreeNode, target int)
+	ans := false
+	dfs = func(node *TreeNode, target int) {
+		if node == nil {
+			return
+		}
+		if node.Val == target && node.Left == nil && node.Right == nil {
+			ans = true
+		}
+		dfs(node.Left, target-node.Val)
+		dfs(node.Right, target-node.Val)
 	}
-	publicTargetSum = targetSum
-	publicBool = false
-	dfsPathSum(root, 0)
-	return publicBool
-}
-
-func dfsPathSum(root *TreeNode, val int) {
-	if root == nil {
-		return
-	}
-	temp := val + root.Val
-	if root.Left == nil && root.Right == nil && temp == publicTargetSum {
-		publicBool = true
-	}
-	dfsPathSum(root.Left, temp)
-	dfsPathSum(root.Right, temp)
+	dfs(root, targetSum)
+	return ans
 }
