@@ -2,13 +2,6 @@ package maximum_subarray_sum_with_one_deletion
 
 func maximumSum(arr []int) int {
 	a, b, ans := arr[0], 0, arr[0]
-	max := func(x, y int) int {
-		if x > y {
-			return x
-		} else {
-			return y
-		}
-	}
 	for i := 1; i < len(arr); i++ {
 		b = max(b+arr[i], a)
 		a = max(a+arr[i], arr[i])
