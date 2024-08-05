@@ -7,24 +7,28 @@ type TreeNode struct {
 }
 
 func isSubtree(root *TreeNode, subRoot *TreeNode) bool {
-	if root == nil {
-		return false
+	var dfs func(*TreeNode) bool
+	dfs = func(node *TreeNode) bool {
+		if node == nil {
+			return false
+		}
+		return check(node, subRoot) || dfs(node.Left) || dfs(node.Right)
 	}
-	return check(root, subRoot) || isSubtree(root.Left, subRoot) || isSubtree(root.Right, subRoot)
+	return dfs(root)
 }
 
-func check(root1, root2 *TreeNode) bool {
-	if root1 != nil && root2 == nil {
-		return false
-	}
-	if root1 == nil && root2 != nil {
-		return false
-	}
-	if root1 == nil && root2 == nil {
+func check(node1, node2 *TreeNode) bool {
+	if node1 == nil && node2 == nil {
 		return true
 	}
-	if root1.Val != root2.Val {
+	if node1 == nil && node2 != nil {
 		return false
 	}
-	return check(root1.Left, root2.Left) && check(root1.Right, root2.Right)
+	if node1 != nil && node2 == nil {
+		return false
+	}
+	if node1.Val != node2.Val {
+		return false
+	}
+	return check(node1.Left, node2.Left) && check(node1.Right, node2.Right)
 }
